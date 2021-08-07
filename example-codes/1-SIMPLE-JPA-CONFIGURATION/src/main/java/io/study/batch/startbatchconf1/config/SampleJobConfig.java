@@ -25,6 +25,7 @@ public class SampleJobConfig {
 	public Job sampleJob(){
 		return jobBuilderFactory.get("sampleJob")
 			.start(sampleStep1(null))
+			.next(sampleStep2(null))
 			.build();
 	}
 
@@ -34,7 +35,19 @@ public class SampleJobConfig {
 		return stepBuilderFactory.get("sampleStep1")
 			.tasklet((contribution, chunkContext) -> {
 				log.info(" >> [실행] sampleStep1 ");
-				log.info(" >> startDate = {} ", startDate);
+				log.info(">>> jobParameter = {}", startDate);
+				return RepeatStatus.FINISHED;
+			})
+			.build();
+	}
+
+	@Bean
+	@JobScope
+	public Step sampleStep2(@Value("#{jobParameters[startDate]}") String startDate) {
+		return stepBuilderFactory.get("sampleStep2")
+			.tasklet((contribution, chunkContext) -> {
+				log.info(">>> [실행] sampleStep2 ");
+				log.info(">>> jobParameter = {}", startDate);
 				return RepeatStatus.FINISHED;
 			})
 			.build();
