@@ -3,8 +3,10 @@ package io.study.batch.startbatchconf1.config;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.repeat.RepeatStatus;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,15 +24,17 @@ public class SampleJobConfig {
 	@Bean
 	public Job sampleJob(){
 		return jobBuilderFactory.get("sampleJob")
-			.start(sampleStep1())
+			.start(sampleStep1(null))
 			.build();
 	}
 
 	@Bean
-	public Step sampleStep1() {
+	@JobScope
+	public Step sampleStep1(@Value("#{jobParameters[startDate]}") String startDate) {
 		return stepBuilderFactory.get("sampleStep1")
 			.tasklet((contribution, chunkContext) -> {
-				log.info(" >> Step1 실행됨 ");
+				log.info(" >> [실행] sampleStep1 ");
+				log.info(" >> startDate = {} ", startDate);
 				return RepeatStatus.FINISHED;
 			})
 			.build();
