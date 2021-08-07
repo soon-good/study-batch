@@ -1,6 +1,9 @@
 spring:
   profiles:
     active: test-postgresql
+  batch:
+    job:
+      names: ${job.name:NONE}
 ---
 spring:
   config:
