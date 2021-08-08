@@ -1,6 +1,14 @@
 # Batch Start (1) Spring Batch 환경설정
 
+[개발자 이동욱님, 2.Spring Batch 가이드 - Batch Job 실행해보기](https://jojoldu.tistory.com/325?category=902551) 의 글을 읽고, 나중에 다시 보기 쉽게 요약해두는 용도로 정리를 시작<br>
 
+
+
+## 참고자료
+
+[개발자 이동욱님, 2.Spring Batch 가이드 - Batch Job 실행해보기](https://jojoldu.tistory.com/325?category=902551)<br>
+
+  
 
 ## 데이터베이스 선택
 
