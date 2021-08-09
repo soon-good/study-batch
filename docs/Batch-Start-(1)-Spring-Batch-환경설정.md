@@ -2,31 +2,27 @@
 
 [개발자 이동욱님, 2.Spring Batch 가이드 - Batch Job 실행해보기](https://jojoldu.tistory.com/325?category=902551) 의 글을 읽고, 나중에 다시 보기 쉽게 요약해두는 용도로 정리를 시작<br>
 
-
+<br>
 
 ## 참고자료
 
 [개발자 이동욱님, 2.Spring Batch 가이드 - Batch Job 실행해보기](https://jojoldu.tistory.com/325?category=902551)<br>
 
-  
+<br>
+
+## 예제코드 
+
+[github/gosgjung/study-batch](https://github.com/gosgjung/study-batch/tree/develop/example-codes/START-BATCH-EXAMPLES)<br>
+
+<br>
 
 ## 데이터베이스 선택
 
-spring batch 예제를 정리할 때 사용할 데이터베이스는 도커 컨테이너 기반으로 사용할 예정이다. 해당 내용은 내일 중으로 docker script 관련된 내용을 추가하게 될 것 같다.<br>
+데이터베이스는 Postgresql 을 선택했다. 도커로 실행해서 Postgresql 을 띄우는 방식으로 했다. 테스트 환경에서만 사용하기 위한 용도라면 도커가 괜찮은 것 같다는 생각이 자주 들었었다. <br>
 
-예전에 잠깐 도커 컴포즈 파일을 만들고 별 오두방정을 떨었던 적이 있었는데, 다 부질없다. 도커 기반으로 테스트 환경 구축 중이라면, docker container 를 구동하는 쉘스크립트를 잘 갖춰놓으면 그거 하나만 사용하면 되는 것 같다. 내 경우는 도커 스크립트를 미리 만들어놓고 있기 때문에 그것을 수동으로 구동시킬 예정이다.<br>
+도커 컨테이너 구동/삭제 쉘 스크립트를 예전에 만들어 둔게 있는데 해당 [쉘스크립트](https://github.com/gosgjung/docker-scripts/tree/develop/docker-postgresql)는 여기에 있다.<br>
 
-추후 flyway 로 마이그레이션 하고 이런 것들을 docker 기반 로컬 DB로 마이그레이션 하는 gradle 빌드 태스크로 정의하면 좋을 듯 하다.<br>
-
-**도커 컨테이너 기반 테스트 DB를 세팅하게 된 이유**<br>
-
-최근 Batch Insert 하는 구문을 JDBC Template 으로 작성했는데, 컬럼들이 꽤 많아서 복잡했었다. 이때 docker 기반의 로컬 postgresql 을 생성 후에 스키마를 생성하고, 테스트 용도 애플리케이션 프로필을 추가해서 Batch Insert 구문의 정합성을 테스트했다.<br>
-
-이렇게 하니, 30분 만에 에러를 찾아낼 수 있었다. 한번 세팅하는게 힘들지, 세팅하고 나면 데이터 정합성에 맞게끔 데이터를 넣는 것을 테스트 하는 것의 장점을 맛볼 수 있다. dev 페이스의 데이터베이스에는 다른 개발자 분들이 입력한 데이터도 있기에 정합성 테스트를 하기에는 가끔 무리가 있기도 하기에 로컬 DB 환경을 구축하는 것은 그만한 장점이 있는 것 같다.<br>
-
-**Flyway**<br>
-
-이렇게 구축한 docker 컨테이너에 flyway로 마이그레이션 하는 예제도 정리해볼 예정이다.<br>
+원래는 설명을 더 자세히 할까 했는데, 그럴 필요가 없다. 괜히 힘뺄필요가 없다.
 
 <br>
 
