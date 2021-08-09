@@ -1,6 +1,5 @@
-package io.study.batch.startbatchconf1.config;
+package io.study.batch.startbatchexamples.config;
 
-import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;

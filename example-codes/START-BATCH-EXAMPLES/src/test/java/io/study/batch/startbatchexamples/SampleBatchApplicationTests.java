@@ -1,10 +1,10 @@
-package io.study.batch.startbatchconf1;
+package io.study.batch.startbatchexamples;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class StartBatchConf1ApplicationTests {
+class SampleBatchApplicationTests {
 
 	@Test
 	void contextLoads() {

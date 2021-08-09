@@ -1,4 +1,4 @@
-package io.study.batch.startbatchconf1;
+package io.study.batch.startbatchexamples;
 
 import java.util.Random;
 

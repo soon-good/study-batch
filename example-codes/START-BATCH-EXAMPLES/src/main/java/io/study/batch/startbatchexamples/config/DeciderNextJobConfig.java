@@ -1,4 +1,4 @@
-package io.study.batch.startbatchconf1.config;
+package io.study.batch.startbatchexamples.config;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -9,7 +9,7 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import io.study.batch.startbatchconf1.OddDecider;
+import io.study.batch.startbatchexamples.OddDecider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
