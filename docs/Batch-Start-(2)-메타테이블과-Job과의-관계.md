@@ -24,9 +24,7 @@ Spring Batch가 작업 기록을 저장하는 테이블들은 여러가지가 �
 
 **Job, Job Instance, Job Execution, Job Execution Params**<br>
 
-Spring Batch에서 주요하게 다뤄지는 개념인 Job, Job Instance, Job Execution, Job Execution Params 와 주요 테이블들과 어떤 관계를 가지는지 그림을 그려봤다.<br>
-
-Spring Batch 에서 쓰이는 주요 테이블과 Batch Job, Step 의 실행/실패, jobParameters 와의 관계를 직접 그림으로 그려봤다.<br>
+Spring Batch에서 주요하게 다뤄지는 개념인 Job, Job Instance, Job Execution, Job Execution Params 와 Batch Job, Step 의 실행/실패가 주요 테이블들과 어떤 관계를 가지는지 그림을 그려봤다.<br>
 
 ![이미지](./img/batch-start/2-JOB-JOB-INSTANCE-EXECUTION-PARAMS.png)
 
