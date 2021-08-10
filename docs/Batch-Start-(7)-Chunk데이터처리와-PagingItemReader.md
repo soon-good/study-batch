@@ -18,11 +18,12 @@ Chunk 처리에 대해 흔히 이야기할때 Page Size, Chunk Size 를 이야�
 
 - Page Size
 
-- - 한번에 조회할 ITEM 의 크기
+  - 한번 조회시 가져올 ITEM 의 갯수 (page size)
 
 - Chunk Size 
 
-- - 한번에 처리될 트랜잭션에서 다루는 row 의 크기
+  - 한번에 처리될 트랜잭션에서 다루는 row 의 크기
+  - 페이지를 여러번 모아서 한번 처리할 때 총 몇개의 데이터여야 하는지를 의미 
 
 <br>
 
