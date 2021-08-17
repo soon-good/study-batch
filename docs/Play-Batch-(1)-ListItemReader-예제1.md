@@ -8,15 +8,36 @@
 
 ## 예제 시나리오
 
-나중에 정리할 예정이다. 바쁘다. 다른 일도 해야 해서.. 몸도 피곤하다아아아...<br>
+- Job
+- ListItemReader
+  - 아래 예제에서는 `simpleBookReader1()` 메서드다. 
+  - ListItemReader 에서는 `size = 10` 인 리스트를 생성해 리턴한다.
+  - 0 부터 9 까지의 숫자를 반복문으로 순회하면서 Book 객체를 생성하는데, `0 ~ 9` 사이의 숫자를 각 book 객체의 bookName, bookId에 지정하고 list.add() 로 이 객체들을 하나씩 추가해준다.
+    - ex) book1(bookName=1, bookId=1), book2(booName=2, bookId=2), ...
+  - 만들어진 0~9 까지의 Book 들의 리스트를 ListItemReader 의 생성자에 넘겨주어 ListItemReader 객체를 생성한다.
+  - 생성한 ListItemReader 객체를 리턴한다.
+  - 보통의 경우는 JPAItemReader, AbstractPagingItemReader 등을 사용하겠지만, DB에서 조회해온 `List<T>` 타입의 자료를 받는 예제를 1번 예제로 만들면 복잡해보이기도 하고 재미도 없을것 같아서 ListItemReader 기반의 예제로 선택했다.
+- ItemProcessor
+  - 아이템 프로세서에서는 현재 시각을 각각의 book 객체의 `createdDt` 필드에 세팅해준다.
+  - 이때 1초의 슬립을 두어서 각각의 시간이 서로 구분되도록 했다.
+- ItemWriter
+  - 보통 ItemWriter 에서는 DB에 저장하는 등의 동작을 정의하는 경우가 많다.
+  - 오늘 작성하는 예제에서는 DB를 사용하지 않을 것이기 때문에 그냥 log 를 출력하도록 작성했다.<br>
 
 <br>
+
+## 기대되는 동작
+
+Job의 설정을 chunkSize = 3으로 지정할 것이다. 이렇게 지정했으니 리스트 내의 10개의 요소를 읽어들일때 한번에 3개씩 processing 하고, write(=log 문 출력) 해야 한다.<br>
+
+만약, 실제 DB를 연동하게 된다면, 10개의 요소를 가진 리스트를 한번에 불러오고, 이것을 한번에 3개의 요소를 가져와 처리하고 저장하는 방식이다.<br>
+
+<br>
+
 
 ## JobComponent 만들기
 
-Job과, Step, Reader, Processor, Writer 를 @Bean 을 통해 스프링 전역에 등록하는 것은 @Configuration 으로 등록해도 되고, @Component 로 등록해도 된다. 오늘 예제에서는 @Component 로 선언해서 Bean 으로 등록했다.<br>
-
-<br>
+Job 설정 클래스는 보통 @Configuration, @Component 등으로 모두 가능한데, 오늘 작성하는. `play-batch` 1번 예제에서는 @Component 애노테이션으로 설정 클래스를 애플리케이션 전역에 Bean 으로 등록했다.<br>
 
 **SimpleListItemJob1.java**<br>
 
@@ -98,7 +119,7 @@ public class SimpleListItemJob1 {
 
 ## 테스트 코드
 
-이렇게 작성한 소스를 실행시키려면, 인텔리제이의 Run Configuration 을 바꿔서 해도 되지만, 테스트 코드에서 프로그램 내에서 동적으로 Job 을 생성되도록 하는 테스트 코드를 작성했다.
+이렇게 작성한 소스를 실행시키려면, 인텔리제이의 Run Configuration 을 바꿔서 해도 실행한다. 하지만 GUI를 클릭해가면서 수정하는것은 아무래도 귀찮다. 이번 예제에서는 테스트 코드에서 프로그램 내에서 동적으로 Job 을 생성되도록 하는 테스트 코드를 작성했다.
 
 ```java
 @SpringBootTest
@@ -135,7 +156,11 @@ public class SimpleJob1Test {
 
 ## 출력결과
 
-로그를 자세히 보면, size = 10 인 리스트를 chunk size 인 3 만큼 읽어들이고 있다.
+로그를 자세히 보면, size = 10 인 리스트를 chunk size 인 3 만큼 읽어들이고 있다.<br>
+
+기대한 결과와 같다.<br>
+
+<br>
 
 ![이미지](./img/play-batch/1-SIMPLE-LIST-ITEM-JOB1-1.png)
 
